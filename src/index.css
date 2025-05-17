@@ -1,0 +1,65 @@
+:root {
+  --bg-light: #ffffff;
+  --text-light: #213547;
+  --bg-dark: #242424;
+  --text-dark: #ffffff;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  transition: all 0.3s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: inherit;
+}
+
+nav a:hover {
+  color: #646cff;
+}
+
+button.toggle-theme {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+main {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}

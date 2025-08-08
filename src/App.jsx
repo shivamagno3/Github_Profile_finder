@@ -342,7 +342,7 @@ function App() {
 
         {/* Search History */}
         <AnimatePresence>
-          {history.length > 0 && !loading && (
+          {history.length > 0 && (
             <motion.div
               className="mt-8 text-center"
               initial={{ opacity: 0, y: 20 }}

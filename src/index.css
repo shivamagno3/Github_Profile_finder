@@ -462,6 +462,167 @@ html {
   scroll-behavior: smooth;
 }
 
+/* GitHub Info Card */
+.github-info-card {
+  background: linear-gradient(135deg, var(--surface-light) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark .github-info-card {
+  background: linear-gradient(135deg, var(--surface-dark) 0%, rgba(59, 130, 246, 0.1) 100%);
+  border: 1px solid var(--border-dark);
+}
+
+.github-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+}
+
+.info-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+body.dark .info-card-header {
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.info-card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-light);
+}
+
+body.dark .info-card-header h3 {
+  color: var(--text-dark);
+}
+
+.info-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+}
+
+body.dark .info-item {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.info-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.2);
+  transform: translateX(5px);
+}
+
+.info-label {
+  font-weight: 500;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+body.dark .info-label {
+  color: #94a3b8;
+}
+
+.info-value {
+  font-weight: 600;
+  color: var(--text-light);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+body.dark .info-value {
+  color: var(--text-dark);
+}
+
+.info-card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+body.dark .info-card-footer {
+  border-top: 1px solid var(--border-dark);
+}
+
+.profile-url code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Quick Info Badges */
+.quick-info-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.info-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: default;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info-badge.hireable {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.info-badge.productive {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.info-badge.popular {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.info-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
 /* Focus styles for accessibility */
 .btn:focus,
 .search-input:focus {

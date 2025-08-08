@@ -296,31 +296,191 @@ function App() {
                 </motion.div>
               </motion.div>
 
-              {/* Additional Info */}
+              {/* GitHub ID Information Card */}
               <motion.div
-                className="flex flex-wrap gap-4 justify-center text-sm text-gray-600 dark:text-gray-400 mb-6"
+                className="github-info-card"
+                initial={{ opacity: 0, y: 30, rotateX: -15 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ duration: 0.6, delay: 0.7, type: "spring", stiffness: 100 }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  rotateY: 2,
+                  boxShadow: "0 20px 60px rgba(59, 130, 246, 0.3)"
+                }}
+              >
+                <motion.div 
+                  className="info-card-header"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                >
+                  <Github size={20} className="text-blue-500" />
+                  <h3>GitHub Profile Information</h3>
+                </motion.div>
+                
+                <div className="info-grid">
+                  <motion.div 
+                    className="info-item"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.9 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    <span className="info-label">User ID:</span>
+                    <span className="info-value">{profile.id}</span>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="info-item"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 1.0 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    <span className="info-label">Account Type:</span>
+                    <span className="info-value capitalize">{profile.type}</span>
+                  </motion.div>
+                  
+                  {profile.company && (
+                    <motion.div 
+                      className="info-item"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 1.1 }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="info-label">Company:</span>
+                      <span className="info-value">{profile.company}</span>
+                    </motion.div>
+                  )}
+                  
+                  {profile.location && (
+                    <motion.div 
+                      className="info-item"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 1.2 }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="info-label">Location:</span>
+                      <span className="info-value flex items-center gap-1">
+                        <MapPin size={14} />
+                        {profile.location}
+                      </span>
+                    </motion.div>
+                  )}
+                  
+                  {profile.blog && (
+                    <motion.div 
+                      className="info-item"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 1.3 }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="info-label">Website:</span>
+                      <span className="info-value">
+                        <a 
+                          href={profile.blog.startsWith('http') ? profile.blog : `https://${profile.blog}`} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="text-blue-500 hover:text-blue-600 flex items-center gap-1 transition-colors"
+                        >
+                          <LinkIcon size={14} />
+                          Visit Site
+                        </a>
+                      </span>
+                    </motion.div>
+                  )}
+                  
+                  <motion.div 
+                    className="info-item"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 1.4 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    <span className="info-label">Member Since:</span>
+                    <span className="info-value flex items-center gap-1">
+                      <Calendar size={14} />
+                      {formatDate(profile.created_at)}
+                    </span>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="info-item"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 1.5 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    <span className="info-label">Last Updated:</span>
+                    <span className="info-value">{formatDate(profile.updated_at)}</span>
+                  </motion.div>
+                  
+                  {profile.public_gists > 0 && (
+                    <motion.div 
+                      className="info-item"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 1.6 }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="info-label">Public Gists:</span>
+                      <span className="info-value">{profile.public_gists}</span>
+                    </motion.div>
+                  )}
+                </div>
+                
+                <motion.div 
+                  className="info-card-footer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.7 }}
+                >
+                  <div className="profile-url">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">Profile URL:</span>
+                    <code className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded mt-1 block break-all">
+                      {profile.html_url}
+                    </code>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Additional Quick Info */}
+              <motion.div
+                className="quick-info-badges"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
+                transition={{ duration: 0.5, delay: 1.8 }}
               >
-                {profile.location && (
-                  <div className="flex items-center gap-1">
-                    <MapPin size={14} />
-                    {profile.location}
-                  </div>
+                {profile.hireable && (
+                  <motion.span 
+                    className="info-badge hireable"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    💼 Available for hire
+                  </motion.span>
                 )}
-                {profile.blog && (
-                  <div className="flex items-center gap-1">
-                    <LinkIcon size={14} />
-                    <a href={profile.blog} target="_blank" rel="noreferrer" className="hover:text-blue-500">
-                      Website
-                    </a>
-                  </div>
+                {profile.public_repos > 50 && (
+                  <motion.span 
+                    className="info-badge productive"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    🚀 Highly Active
+                  </motion.span>
                 )}
-                <div className="flex items-center gap-1">
-                  <Calendar size={14} />
-                  Joined {formatDate(profile.created_at)}
-                </div>
+                {profile.followers > 100 && (
+                  <motion.span 
+                    className="info-badge popular"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    ⭐ Popular Developer
+                  </motion.span>
+                )}
               </motion.div>
 
               <motion.a

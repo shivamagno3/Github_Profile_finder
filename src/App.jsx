@@ -9,6 +9,7 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState([]);
+  const [showHistory, setShowHistory] = useState(false);
   const profileRef = useRef(null);
 
   useEffect(() => {
@@ -341,8 +342,61 @@ function App() {
         </AnimatePresence>
 
         {/* Search History */}
-        <AnimatePresence>
-          {history.length > 0 && (
+        {history.length > 0 && (
+          <motion.div
+            className="mt-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.button
+              onClick={() => setShowHistory(!showHistory)}
+              className="btn btn-secondary mb-4"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Users size={16} />
+              {showHistory ? 'Hide' : 'Show'} Recent Searches ({history.length})
+            </motion.button>
+            
+            <AnimatePresence>
+              {showHistory && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {history.map((user, index) => (
+                      <motion.button
+                        key={user}
+                        onClick={() => {
+                          setUsername(user);
+                          fetchProfile(user);
+                        }}
+                        className="btn btn-secondary text-sm"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, delay: index * 0.1 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {user}
+                      </motion.button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </motion.section>
+    </>
+  );
+}
+
+export default App;
             <motion.div
               className="mt-8 text-center"
               initial={{ opacity: 0, y: 20 }}
